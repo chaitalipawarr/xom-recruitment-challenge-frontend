@@ -1,27 +1,70 @@
-# XomRecruitmentChallenge
+# Front-end / Recruitment Challange
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.13.
+This challange exists to check your developer capabilities.
 
-## Development server
+Please fork your result via [Stackblitz](https://stackblitz.com/edit/angular-ivy-xouktd?file=README.md) and send the link of your Stackblitz fork back to us. Comments and thoughts you have on this challenge are always welcome.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Thanks, have fun and success.
+****
+## Solve:
+The mocked server of this application provides a hidden message.
+If you're able to solve to upcoming steps the solution will be yours!
 
-## Code scaffolding
+### Task 1:
+Access the data which our mocked server provides.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Task 2:
+Convert the hex color codes to rgb values. Please refer to the lib [hex-rgb](https://www.npmjs.com/package/hex-rgb) which as already registered at this application. Every value exept the alpha value should be copied to a new Array which contains all converted RGB values in a flat structure. Just to be sure... This means that all values should be aligned at the same level, so they are not nested ;-) 
 
-## Build
+Conversion Example:
+1. ```javascript
+    ['8200fd', 'FFFFFF']
+   ```
+2. ```javascript
+    [
+      {alpha: 1, blue: 130, green: 0, red: 251},
+      {alpha: 1, blue: 255, green: 255, red: 255}
+    ]
+   ```
+3. ```javascript
+    [130, 0, 251, 255, 255, 255]
+   ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Task 3:
+The array which contains all values should now be cleaned up from all multiple occuring values.
 
-## Running unit tests
+### Task 4:
+Please sort the filtered array in an descending order.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Task 5:
+Transform the leftover values from their decimal reprentation into their ASCII counterpart and display the final array as string.
 
-## Running end-to-end tests
+Tip:
+ASCII translation can be done with: `String.fromCharCode`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Conversion Example:
+1. ```javascript
+    [65, 66, 67]
+   ```
+2. ```javascript
+    ['A', 'B', 'C']
+   ```
+3. ```javascript
+    'ABC'
+   ```
 
-## Further help
+****
+## Create:
+### Task 6:
+Create a new component which offers you a angular material input field. It should access the revealed hidden message as it's required text content. Every other entered value should cause the input field to reveal it's error status and a hint or message of the required text.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+****
+## Fix (optional):
+### Task 7:
+The root component has a member called "isTask7". Please set this value to true and try so solve this problem. Every solution is welcome but... the underlying notion of this task points at a certain perspective of JavaScript's way to arrange references. If you understand this concept the solution doesn't need that much adjustment.
+
+### Task 8:
+You're always welcome to apply the boy-scout rule to those parts of this code base where this is necessary for you :-)
+
+****
+END
