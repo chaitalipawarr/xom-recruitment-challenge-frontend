@@ -1,6 +1,6 @@
-# Front-end / Recruitment Challange
+# Front-end / Recruitment Challenge
 
-This challange exists to check your developer capabilities.
+This challenge exists to check your developer capabilities.
 
 Please fork your result via [Stackblitz](https://stackblitz.com/edit/angular-ivy-xouktd?file=README.md) and send the link of your Stackblitz fork back to us. Comments and thoughts you have on this challenge are always welcome.
 
