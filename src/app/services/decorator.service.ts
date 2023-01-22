@@ -22,21 +22,27 @@ export class DecoratorService {
       );
   }
 
-  private getMessageFromHex(response: string[]): string {
+  private getMessageFromHex(hexData: string[]): string {
+    const codes: number[] = hexData
+      // drop alpha and get RGB values
+      .map((hex: string): number[] => {
+        const { alpha, ...rgb } = hexRgb(hex);
+        return Object.values(rgb);
+      })
+      // flatten hex codes 2-dimensional array
+      .reduce((accumulator, array) => {
+        return [...accumulator, ...array];
+      }, []);
+
     const uniqueHexCodes: number[] = Array.from(
-      // unique values
+      // unique codes
       new Set<number>(
-        response
-          .map((hex: string): number[] => {
-            const { alpha, ...rgb } = hexRgb(hex);
-            return Object.values(rgb);
-          })
-          .flat()
-          // sort in descending order
+        codes
+          // sort codes in descending order
           .sort((a: number, b: number): number => (a > b ? -1 : 1))
       )
     );
-    // get char code for unique codes
+    // get char codes for unique codes
     return String.fromCharCode(...uniqueHexCodes);
   }
 }
