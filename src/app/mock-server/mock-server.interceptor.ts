@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import * as mockServerResponse from './mock-server-response.json';
+import mockServerResponse from './mock-server-response.json';
 
 @Injectable()
 export class MockServerInterceptor implements HttpInterceptor {
