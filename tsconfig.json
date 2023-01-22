@@ -16,10 +16,10 @@
     "resolveJsonModule": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "es2020",
+    "module": "ES2022",
     "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": false,
-    "lib": ["ES2020", "DOM"]
+    "lib": ["ES2022", "DOM"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
