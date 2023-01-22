@@ -1,0 +1,14 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Input</mat-label>
+    <input type="text" matInput [formControl]="inputControl" [errorStateMatcher]="matcher"
+      placeholder="Please enter text">
+    <mat-hint>It is company name!</mat-hint>
+    <mat-error *ngIf="inputControl.hasError('pattern') && !inputControl.hasError('required')">
+      Incorrect! Please enter a valid value.
+    </mat-error>
+    <mat-error *ngIf="inputControl.hasError('required')">
+      Input value is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
