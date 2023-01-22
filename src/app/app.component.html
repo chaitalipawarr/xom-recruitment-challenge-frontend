@@ -1,1 +1,6 @@
-<h1>{{greeting}}</h1>
+<h1 class="headline-1">{{ enrichedContent }}</h1>
+<ng-container *ngIf="inputString$ | async as inputString">
+  <form class="form">
+    <app-xom-input [inputValue]="inputString"></app-xom-input>
+  </form>
+</ng-container>

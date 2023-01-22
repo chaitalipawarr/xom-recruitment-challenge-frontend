@@ -4,11 +4,11 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpResponse
+  HttpResponse,
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import * as mockServerResponse from './mock-server-response.json';
+import mockServerResponse from './mock-server-response.json';
 
 @Injectable()
 export class MockServerInterceptor implements HttpInterceptor {
@@ -16,7 +16,7 @@ export class MockServerInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler,
+    next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     if (this.isHexColorRequest(request)) {
       return this.respondHexColors();
@@ -25,18 +25,19 @@ export class MockServerInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
 
-  isHexColorRequest(request: HttpRequest<unknown>) {
-    if (request.method === 'GET' &&
-        request.url === '/hex-colors' &&
-        Array.isArray(this.hexColors)
-    ){
+  private isHexColorRequest(request: HttpRequest<unknown>): boolean {
+    if (
+      request.method === 'GET' &&
+      request.url === '/hex-colors' &&
+      Array.isArray(this.hexColors)
+    ) {
       return true;
     }
-    
+
     return false;
   }
 
-  respondHexColors() {
+  private respondHexColors(): Observable<HttpResponse<string[]>> {
     return of(
       new HttpResponse({
         status: 200,

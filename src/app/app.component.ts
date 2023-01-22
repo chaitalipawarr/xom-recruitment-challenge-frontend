@@ -1,36 +1,37 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import hexRgb from 'hex-rgb'; // as example 
-
-import { DecoratorService } from './decorator.service';
+import { Observable } from 'rxjs';
+import { DecoratorService } from './services/decorator.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public greeting = "Hello fellow recruitment!";
-  private isTask7 = false;
+  private isTask7: boolean = true;
+  public greeting: string = 'Hello fellow recruitment!';
+  public inputString$!: Observable<string>;
+  public enrichedContent: string = '';
 
-  constructor(
-    private http: HttpClient,
-    private decoratorService: DecoratorService,
-  ) {
-    const rgbColorCodeExample = hexRgb('FFFFFF');
-    console.log('rgbColorCodeExample:', rgbColorCodeExample);
-
+  constructor(private decoratorService: DecoratorService) {
     if (this.isTask7) {
       this.enrichWelcomeText();
     }
+    this.decodeInputString();
   }
 
-  private enrichWelcomeText() {
-    const enrichedContent = this.decoratorService.getAttribute(
-      this.joinAttribute
+  private enrichWelcomeText(): void {
+    // fix(task-7): use arrow function to fix context issue
+    this.enrichedContent = this.decoratorService.getAttribute(
+      (attribute: string) => this.joinAttribute(attribute)
     );
   }
 
-  private joinAttribute(attribute: string) {
-    return this.greeting + attribute;
+  private joinAttribute(attribute: string): string {
+    return `${this.greeting}${attribute}`;
+  }
+
+  private decodeInputString(): void {
+    this.inputString$ = this.decoratorService.getHiddenMessage();
   }
 }
