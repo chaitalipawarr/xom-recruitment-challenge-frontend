@@ -14,26 +14,29 @@ export class DecoratorService {
     return callback("You're xom-tastic!");
   }
 
-  public fetchHexColor(): Observable<string> {
+  public getHiddenMessage(): Observable<string> {
     return this.httpClient
       .get<string[]>('/hex-colors')
       .pipe(
-        map((rawResponse: string[]): string => this.formatHexData(rawResponse))
+        map((response: string[]): string => this.getMessageFromHex(response))
       );
   }
 
-  private formatHexData(rawResponse: string[]): string {
-    const data: number[] = Array.from(
+  private getMessageFromHex(response: string[]): string {
+    const uniqueHexCodes: number[] = Array.from(
+      // unique values
       new Set<number>(
-        rawResponse
+        response
           .map((hex: string): number[] => {
             const { alpha, ...rgb } = hexRgb(hex);
             return Object.values(rgb);
           })
           .flat()
+          // sort in descending order
           .sort((a: number, b: number): number => (a > b ? -1 : 1))
       )
     );
-    return String.fromCharCode(...data);
+    // get char code for unique codes
+    return String.fromCharCode(...uniqueHexCodes);
   }
 }

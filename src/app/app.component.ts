@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DecoratorService } from './decorator.service';
+import { DecoratorService } from './services/decorator.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   private isTask7: boolean = true;
@@ -20,6 +21,7 @@ export class AppComponent {
   }
 
   private enrichWelcomeText(): void {
+    // fix(task-7): use arrow function to fix context issue
     this.enrichedContent = this.decoratorService.getAttribute(
       (attribute: string) => this.joinAttribute(attribute)
     );
@@ -30,6 +32,6 @@ export class AppComponent {
   }
 
   private decodeInputString(): void {
-    this.inputString$ = this.decoratorService.fetchHexColor();
+    this.inputString$ = this.decoratorService.getHiddenMessage();
   }
 }
