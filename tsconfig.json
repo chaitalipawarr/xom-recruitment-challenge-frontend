@@ -18,7 +18,8 @@
     "target": "ES2022",
     "module": "es2020",
     "allowSyntheticDefaultImports": true,
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "lib": ["ES2020", "DOM"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
